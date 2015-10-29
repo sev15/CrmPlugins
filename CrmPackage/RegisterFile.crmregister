@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Register xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/crm/2011/tools/pluginregistration">
+  <Solutions>
+    <Solution Assembly="Sample.Crm.Plugins.dll" Id="f7fabca6-8f7d-e511-a6e0-005056b0dc67" IsolationMode="None" SourceType="Database">
+      <PluginTypes>
+        <Plugin Description="Plug-in to validate the Account entity" FriendlyName="AccountPlugin" Name="Sample.Crm.Plugins.AccountPlugin" Id="fafabca6-8f7d-e511-a6e0-005056b0dc67" TypeName="Sample.Crm.Plugins.AccountPlugin">
+          <Steps>
+            <clear />
+            <Step CustomConfiguration="" Name="PostAccountUpdate" Description="Post-Operation of Account Update" Id="fbfabca6-8f7d-e511-a6e0-005056b0dc67" MessageName="Update" Mode="Synchronous" PrimaryEntityName="account" Rank="1" SecureConfiguration="" Stage="PostOutsideTransaction" SupportedDeployment="ServerOnly">
+              <Images />
+            </Step>
+          </Steps>
+        </Plugin>
+        <Plugin Description="Plug-in to validate the Case entity" FriendlyName="IncidentPlugin" Name="Sample.Crm.Plugins.IncidentPlugin" Id="fefabca6-8f7d-e511-a6e0-005056b0dc67" TypeName="Sample.Crm.Plugins.IncidentPlugin">
+          <Steps>
+            <clear />
+            <Step CustomConfiguration="" Name="PreValidateCaseCreate" Description="Pre-Validation of Case Create" Id="fffabca6-8f7d-e511-a6e0-005056b0dc67" MessageName="Create" Mode="Synchronous" PrimaryEntityName="incident" Rank="1" SecureConfiguration="" Stage="PreOutsideTransaction" SupportedDeployment="ServerOnly">
+              <Images />
+            </Step>
+            <Step CustomConfiguration="" Name="PreCaseCreate" Description="Pre-Operation of Case Create" Id="02fbbca6-8f7d-e511-a6e0-005056b0dc67" MessageName="Create" Mode="Synchronous" PrimaryEntityName="incident" Rank="1" SecureConfiguration="" Stage="PreInsideTransaction" SupportedDeployment="ServerOnly">
+              <Images />
+            </Step>
+            <Step CustomConfiguration="" Name="PreValidateCaseUpdate" Description="Pre-Validation of Case Update" Id="05fbbca6-8f7d-e511-a6e0-005056b0dc67" MessageName="Update" Mode="Synchronous" PrimaryEntityName="incident" Rank="1" SecureConfiguration="" Stage="PreOutsideTransaction" SupportedDeployment="ServerOnly">
+              <Images>
+                <Image EntityAlias="Entity" Id="08fbbca6-8f7d-e511-a6e0-005056b0dc67" MessagePropertyName="Target" ImageType="PreImage" />
+              </Images>
+            </Step>
+          </Steps>
+        </Plugin>
+      </PluginTypes>
+    </Solution>
+  </Solutions>
+  <XamlWorkflows />
+</Register>

@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEV.Crm.Plugins", "SEV.Crm.Plugins\SEV.Crm.Plugins.csproj", "{E22B477A-5EFB-4545-B6C0-BAAA605A7839}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEV.Crm.Plugins.Tests", "SEV.Crm.Plugins.Tests\SEV.Crm.Plugins.Tests.csproj", "{5D09316D-B777-48FF-9849-1ADE2FB3E1D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEV.Crm.ServiceContext", "SEV.Crm.ServiceContext\SEV.Crm.ServiceContext.csproj", "{F8F561C6-48EA-4A7B-AFF4-525B9B56047B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEV.Crm.ServiceContext.Tests", "SEV.Crm.ServiceContext.Tests\SEV.Crm.ServiceContext.Tests.csproj", "{1A7A63FC-BAFA-4221-A8DD-8FDBD53957AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{86C7BF73-87E8-4046-A2E9-BF9257BDF282}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.csproj", "{0438DAE5-0475-459E-8F63-7A630A07E28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmEntities", "CrmEntities\CrmEntities.csproj", "{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43}"
+EndProject
+Project("{88A30576-7583-4F75-8136-5EFD2C14ADFF}") = "CrmPackage", "CrmPackage\CrmPackage.csproj", "{453A456F-5043-4385-92DF-A0A45F22BB94}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0438DAE5-0475-459E-8F63-7A630A07E28F} = {0438DAE5-0475-459E-8F63-7A630A07E28F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.Tests", "Plugins.Tests\Plugins.Tests.csproj", "{7959B42D-489A-4E7A-B65F-D1F745FF5064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.SysTests", "Plugins.SysTests\Plugins.SysTests.csproj", "{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB}"
+EndProject
+Global
+	GlobalSection(CRMSolutionProperties) = preSolution
+		SolutionIsBoundToCRM = True
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E22B477A-5EFB-4545-B6C0-BAAA605A7839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22B477A-5EFB-4545-B6C0-BAAA605A7839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22B477A-5EFB-4545-B6C0-BAAA605A7839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22B477A-5EFB-4545-B6C0-BAAA605A7839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D09316D-B777-48FF-9849-1ADE2FB3E1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D09316D-B777-48FF-9849-1ADE2FB3E1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D09316D-B777-48FF-9849-1ADE2FB3E1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D09316D-B777-48FF-9849-1ADE2FB3E1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F561C6-48EA-4A7B-AFF4-525B9B56047B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F561C6-48EA-4A7B-AFF4-525B9B56047B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F561C6-48EA-4A7B-AFF4-525B9B56047B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F561C6-48EA-4A7B-AFF4-525B9B56047B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A7A63FC-BAFA-4221-A8DD-8FDBD53957AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7A63FC-BAFA-4221-A8DD-8FDBD53957AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7A63FC-BAFA-4221-A8DD-8FDBD53957AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7A63FC-BAFA-4221-A8DD-8FDBD53957AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0438DAE5-0475-459E-8F63-7A630A07E28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0438DAE5-0475-459E-8F63-7A630A07E28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0438DAE5-0475-459E-8F63-7A630A07E28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0438DAE5-0475-459E-8F63-7A630A07E28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{453A456F-5043-4385-92DF-A0A45F22BB94}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7959B42D-489A-4E7A-B65F-D1F745FF5064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7959B42D-489A-4E7A-B65F-D1F745FF5064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7959B42D-489A-4E7A-B65F-D1F745FF5064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7959B42D-489A-4E7A-B65F-D1F745FF5064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0438DAE5-0475-459E-8F63-7A630A07E28F} = {2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}
+		{7C6D0628-4B4E-4FBF-B093-DF3E19C7AA43} = {2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}
+		{453A456F-5043-4385-92DF-A0A45F22BB94} = {2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}
+		{7959B42D-489A-4E7A-B65F-D1F745FF5064} = {2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}
+		{3BEA2DA3-2922-473F-8CC2-FA2FC08BB1BB} = {2ACD6A8D-EF22-4D2D-BE99-C50654D56DCD}
+	EndGlobalSection
+EndGlobal
