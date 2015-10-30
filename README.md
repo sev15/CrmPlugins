@@ -6,4 +6,4 @@ This project contains the code for the following NuGet packages :
 
 This project is based on Microsoft CRM SDK 2011 but it is compatible with Microsoft CRM 2011, 2013 and 2015.
 
-This project includes a Sample explaining how to use the framework.
+This project includes a Sample (https://github.com/sev15/CrmPlugins/tree/master/Plugins) explaining how to use the framework.
