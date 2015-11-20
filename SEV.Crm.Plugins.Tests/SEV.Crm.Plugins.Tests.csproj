@@ -51,7 +51,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="SEV.Crm.ServiceContext">
-      <HintPath>..\packages\SEV.Crm.ServiceContext.0.9.1.1\lib\net40\SEV.Crm.ServiceContext.dll</HintPath>
+      <HintPath>..\packages\SEV.Crm.ServiceContext.1.0.0.0\lib\net40\SEV.Crm.ServiceContext.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
