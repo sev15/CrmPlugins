@@ -9,7 +9,7 @@
 
 The Sample project uses the Early-bound approach - https://msdn.microsoft.com/en-us/library/gg327971(v=crm.7).aspx#Anchor_1.
 The VS CrmEntities project contains generated (https://msdn.microsoft.com/en-us/library/gg327844.aspx) crm entities.
-You can use its but it would be better to generate the entities udatpted for the data model of your CRM. To do that
+You can use its but it would be better to generate the entities adapted for the data model of your CRM. To do that
 you can use the GenerateEntities.bat file. But you will need to modify it by specifying the credentials necessery
 to conect to your CRM.
 
