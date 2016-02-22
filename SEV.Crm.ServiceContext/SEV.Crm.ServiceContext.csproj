@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrmServiceContext.cs" />
+    <Compile Include="CrmServiceContextExtensions.cs" />
     <Compile Include="CrmServiceContextFactory.cs" />
     <Compile Include="ICrmServiceContext.cs" />
     <Compile Include="ICrmServiceContextFactory.cs" />
@@ -65,6 +66,9 @@
   <ItemGroup>
     <None Include="..\sevcrm.snk">
       <Link>sevcrm.snk</Link>
+    </None>
+    <None Include="SEV.Crm.ServiceContext.nuspec">
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

@@ -10,12 +10,12 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyCompany("SEV")]
 [assembly: AssemblyProduct("SEV.Crm.ServiceContext")]
-[assembly: AssemblyCopyright("Copyright © SEV 2015")]
+[assembly: AssemblyCopyright("Copyright © SEV 2015-2016")]
 
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
 [assembly: Guid("9a11022e-07e2-48fd-bc4a-986a60df1703")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
