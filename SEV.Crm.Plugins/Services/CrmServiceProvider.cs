@@ -21,6 +21,10 @@ namespace SEV.Crm.Services
 
         public void LoadService(Type key, object service)
         {
+            if (m_services.ContainsKey(key))
+            {
+                return;
+            }
             m_services.Add(key, service);
         }
 

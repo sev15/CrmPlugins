@@ -53,6 +53,17 @@ namespace SEV.Crm.Services.Tests
         }
 
         [Test]
+        public void LoadService_ShouldNotAddNewServiceInCrmServiceProvider_WhenServiceForTheSameKeyIsAlreadyAdded()
+        {
+            m_serviceProvider.LoadService(typeof(UriBuilder), new UriBuilder());
+            var service = new UriBuilder();
+
+            m_serviceProvider.LoadService(typeof(UriBuilder), service);
+
+            Assert.That(m_serviceProvider.GetService(typeof(UriBuilder)), Is.Not.SameAs(service));
+        }
+
+        [Test]
         public void GetService_ShouldThrowInvalidOperationException_WhenTryToGetServiceWhichIsNotLoaded()
         {
             Assert.That(() => CrmServiceProvider.Current.GetService(typeof(string)),
