@@ -13,7 +13,7 @@ namespace SEV.Crm.Plugins.Tests
         private static readonly Guid TestId = Guid.NewGuid();
         private static readonly Entity TestEntity = new Entity();
         private readonly ParameterCollection TestParameterCollection =
-            new ParameterCollection() { new KeyValuePair<string, object>(PluginContext.TargetEntityAlias, TestEntity) };
+            new ParameterCollection { new KeyValuePair<string, object>(PluginContext.TargetEntityAlias, TestEntity) };
 
         private Mock<ITracingService> tracingServiceMock;
         private Mock<IPluginExecutionContext> pluginExecutionContextMock;

@@ -53,17 +53,5 @@ namespace SEV.Crm.Business.Agents.Tests
 
             Assert.That(() => m_businessAgent.Execute(context), Throws.Nothing);
         }
-
-        [Test]
-        public void Dispose_ShouldResetExecutionOrderAndContext()
-        {
-            m_businessAgent.ExecutionOrder = 1;
-            m_businessAgent.Context = new object[] { "test" };
-
-            m_businessAgent.Dispose();
-
-            Assert.That(m_businessAgent.ExecutionOrder, Is.EqualTo(-1));
-            Assert.That(m_businessAgent.Context, Is.Null);
-        }
     }
 }

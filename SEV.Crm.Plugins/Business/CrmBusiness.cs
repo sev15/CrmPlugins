@@ -10,9 +10,6 @@ namespace SEV.Crm.Business
     public abstract class CrmBusiness<TEntity> : IPluginExecutor
         where TEntity : Entity
     {
-        private BusinessConfigurator m_configurator;
-        private readonly List<IBusinessAgent> m_businessAgents = new List<IBusinessAgent>();
-
         private ICrmPluginEventExtractor m_pluginEventExtractor;
         protected ICrmPluginEventExtractor PluginEventExtractor
         {
@@ -23,42 +20,28 @@ namespace SEV.Crm.Business
             }
         }
 
-        private IBusinessConfiguratorFactory m_configuratorFactory;
-        protected IBusinessConfiguratorFactory ConfiguratorFactory
+        public IEnumerable<IBusinessAgent> Configure(IPluginExecutorContext executorContext)
         {
-            get
-            {
-                return m_configuratorFactory ?? (m_configuratorFactory = GetBusinessConfiguratorFactory());
-            }
+            CrmPluginEvent pluginEvent = PluginEventExtractor.GetPluginEvent(executorContext);
+            IBusinessConfiguratorFactory configuratorFactory = GetBusinessConfiguratorFactory();
+            BusinessConfigurator configurator = configuratorFactory.GetConfigurator(pluginEvent);
+
+            return configurator.Configure(executorContext);
         }
 
         private IBusinessConfiguratorFactory GetBusinessConfiguratorFactory()
         {
-            var configuratorAbsractFactory = 
+            var configuratorAbsractFactory =
                                         CrmServiceProvider.Current.GetService<IBusinessConfiguratorAbsractFactory>();
             return configuratorAbsractFactory.GetFactory<TEntity>();
         }
 
-        public void Configure(IPluginExecutorContext executorContext)
+        public void Execute(IPluginExecutorContext executorContext, IEnumerable<IBusinessAgent> businessAgents)
         {
-            CrmPluginEvent pluginEvent = PluginEventExtractor.GetPluginEvent(executorContext);
-            m_configurator = ConfiguratorFactory.GetConfigurator(pluginEvent);
-            m_businessAgents.AddRange(m_configurator.Configure(executorContext));
-        }
-
-        public void Execute(IPluginExecutorContext executorContext)
-        {
-            foreach (var agent in m_businessAgents.OrderBy(x => x.ExecutionOrder))
+            foreach (var agent in businessAgents.OrderBy(x => x.ExecutionOrder))
             {
                 agent.Execute(executorContext);
             }
-        }
-
-        public void Dispose()
-        {
-            m_configurator = null;
-            m_businessAgents.ForEach(agent => agent.Dispose());
-            m_businessAgents.Clear();
         }
     }
 }

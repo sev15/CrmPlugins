@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
 
 [assembly: InternalsVisibleTo("SEV.Crm.Plugins.Tests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c1f8577b9c9a8f50a6a4d0b7cd67564de9b867f1f9e2735d7ea7b14ca5952d3587c3735d3f47548839b361a85d019e7cac59f6ed88bbf4488dcdaee8a59cc0bc133eeb31018ee0867daad513c38f18e95f26bfdbd963f1e4ea7c1c1b3ec8a4871cac831dffb26dd1d15d2ccfeec0ac04646f12bfa920985915cb86ae192830de")]

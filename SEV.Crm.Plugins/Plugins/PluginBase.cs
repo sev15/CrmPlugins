@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.ServiceModel;
 using Microsoft.Xrm.Sdk;
 using SEV.Crm.Business;
+using SEV.Crm.Business.Agents;
 using SEV.Crm.ServiceContext;
 using SEV.Crm.Services;
 
@@ -40,37 +42,17 @@ namespace SEV.Crm.Plugins
 
         protected abstract IBusinessConfiguratorFactory CreateBusinessConfiguratorFactory();
 
-        private IPluginExecutor m_pluginExecutor;
-        internal IPluginExecutor PluginExecutor
-        {
-            get
-            {
-                if (m_pluginExecutor == null)
-                {
-                    var executorFactory = GetServiceProvider().GetService<IPluginExecutorFactory>();
-                    m_pluginExecutor = executorFactory.GetExecutor(m_entityType);
-                }
-                return m_pluginExecutor;
-            }
-        }
-
-        private IPluginContextFactory m_contextFactory;
-        internal IPluginContextFactory PluginContextFactory
-        {
-            get
-            {
-                return m_contextFactory ?? (m_contextFactory = GetServiceProvider().GetService<IPluginContextFactory>());
-            }
-        }
-
         public void Execute(IServiceProvider serviceProvider)
         {
-            IPluginExecutorContext pluginContext = PluginContextFactory.CreateContext(serviceProvider, m_entityType);
+            var contextFactory = GetServiceProvider().GetService<IPluginContextFactory>();
+            IPluginExecutorContext pluginContext = contextFactory.CreateContext(serviceProvider, m_entityType);
+            var executorFactory = GetServiceProvider().GetService<IPluginExecutorFactory>();
+            IPluginExecutor pluginExecutor = executorFactory.GetExecutor(m_entityType);
 
             try
             {
-                PluginExecutor.Configure(pluginContext);
-                PluginExecutor.Execute(pluginContext);
+                IEnumerable<IBusinessAgent> businessAgents = pluginExecutor.Configure(pluginContext);
+                pluginExecutor.Execute(pluginContext, businessAgents);
             }
             catch (Exception e)
             {
@@ -79,10 +61,6 @@ namespace SEV.Crm.Plugins
                     throw;
                 }
                 HandleException(e, pluginContext.TracingService);
-            }
-            finally
-            {
-                PluginExecutor.Dispose();
             }
         }
 

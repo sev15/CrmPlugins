@@ -1,6 +1,6 @@
 ﻿namespace SEV.Crm.Business.Agents
 {
-    public interface IBusinessAgent : System.IDisposable
+    public interface IBusinessAgent
     {
         int ExecutionOrder { get; set; }
         object[] Context { get; set; }

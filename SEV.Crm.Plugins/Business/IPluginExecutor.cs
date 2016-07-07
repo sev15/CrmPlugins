@@ -1,9 +1,12 @@
 ﻿
+using System.Collections.Generic;
+using SEV.Crm.Business.Agents;
+
 namespace SEV.Crm.Business
 {
-    public interface IPluginExecutor : System.IDisposable
+    public interface IPluginExecutor
     {
-        void Configure(IPluginExecutorContext context);
-        void Execute(IPluginExecutorContext context);
+        IEnumerable<IBusinessAgent> Configure(IPluginExecutorContext context);
+        void Execute(IPluginExecutorContext context, IEnumerable<IBusinessAgent> businessAgents);
     }
 }

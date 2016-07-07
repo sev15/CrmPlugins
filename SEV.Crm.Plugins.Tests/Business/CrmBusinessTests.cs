@@ -16,12 +16,11 @@ namespace SEV.Crm.Business.Tests
         private const CrmPluginEvent TestCrmPluginEvent = CrmPluginEvent.PostCreate;
         private static readonly IPluginExecutorContext TestContext = new Mock<IPluginExecutorContext>().Object;
 
-        private Mock<IBusinessAgent> crmBusinessAgentMock;
-        private Mock<ICrmServiceProvider> crmServiceProviderMock;
-        private Mock<ICrmPluginEventExtractor> crmPluginEventExtractorMock;
-        private Mock<IBusinessConfiguratorAbsractFactory> businessConfiguratorAbsractFactoryMock;
-        private Mock<BusinessConfiguratorFactory> businessConfiguratorFactoryMock;
-        private Mock<BusinessConfigurator> businessConfiguratorMock;
+        private Mock<ICrmServiceProvider> m_crmServiceProviderMock;
+        private Mock<ICrmPluginEventExtractor> m_crmPluginEventExtractorMock;
+        private Mock<IBusinessConfiguratorAbsractFactory> m_businessConfiguratorAbsractFactoryMock;
+        private Mock<BusinessConfiguratorFactory> m_businessConfiguratorFactoryMock;
+        private Mock<BusinessConfigurator> m_businessConfiguratorMock;
         private IPluginExecutor m_crmBusiness;
 
         #region SetUp
@@ -31,36 +30,30 @@ namespace SEV.Crm.Business.Tests
         {
             InitializeMocks();
 
-            var crmBusinessMock = new Mock<CrmBusiness<Entity>> { CallBase = true };
-            m_crmBusiness = crmBusinessMock.Object;
+            m_crmBusiness = new Mock<CrmBusiness<Entity>> { CallBase = true }.Object;
         }
 
         private void InitializeMocks()
         {
-            crmPluginEventExtractorMock = new Mock<ICrmPluginEventExtractor>();
-            crmPluginEventExtractorMock.Setup(x => x.GetPluginEvent(TestContext))
-                                       .Returns(TestCrmPluginEvent);
-            crmBusinessAgentMock = new Mock<IBusinessAgent>();
-            crmBusinessAgentMock.SetupProperty(x => x.ExecutionOrder, 1);
-            businessConfiguratorMock = new Mock<BusinessConfigurator>();
-            businessConfiguratorMock.Setup(x => x.Configure(TestContext))
-                                    .Returns(new List<IBusinessAgent> { crmBusinessAgentMock.Object, crmBusinessAgentMock.Object });
-            businessConfiguratorFactoryMock = new Mock<BusinessConfiguratorFactory>();
-            businessConfiguratorFactoryMock.Protected().Setup<List<Tuple<CrmPluginEvent, BusinessConfigurator>>>("CreateConfiguratorEntries")
-                                           .Returns(new List<Tuple<CrmPluginEvent, BusinessConfigurator>>());
-            businessConfiguratorFactoryMock.As<IBusinessConfiguratorFactory>()
-                                           .Setup(x => x.GetConfigurator(It.IsAny<CrmPluginEvent>()))
-                                           .Returns(businessConfiguratorMock.Object);
-            businessConfiguratorAbsractFactoryMock = new Mock<IBusinessConfiguratorAbsractFactory>();
-            businessConfiguratorAbsractFactoryMock.Setup(x => x.GetFactory<Entity>())
-                                                  .Returns(businessConfiguratorFactoryMock.Object);
-            crmServiceProviderMock = new Mock<ICrmServiceProvider>();
-            crmServiceProviderMock.Setup(x => x.GetService(It.Is<Type>(t => t == typeof(ICrmPluginEventExtractor))))
-                                      .Returns(crmPluginEventExtractorMock.Object);
-            crmServiceProviderMock.Setup(x => x.GetService(It.Is<Type>(t => t == typeof(IBusinessConfiguratorAbsractFactory))))
-                                      .Returns(businessConfiguratorAbsractFactoryMock.Object);
+            m_crmPluginEventExtractorMock = new Mock<ICrmPluginEventExtractor>();
+            m_crmPluginEventExtractorMock.Setup(x => x.GetPluginEvent(TestContext)).Returns(TestCrmPluginEvent);
+            m_businessConfiguratorMock = new Mock<BusinessConfigurator>();
+            m_businessConfiguratorFactoryMock = new Mock<BusinessConfiguratorFactory>();
+            m_businessConfiguratorFactoryMock.Protected().Setup<List<Tuple<CrmPluginEvent, BusinessConfigurator>>>("CreateConfiguratorEntries")
+                                             .Returns(new List<Tuple<CrmPluginEvent, BusinessConfigurator>>());
+            m_businessConfiguratorFactoryMock.As<IBusinessConfiguratorFactory>()
+                                             .Setup(x => x.GetConfigurator(It.IsAny<CrmPluginEvent>()))
+                                             .Returns(m_businessConfiguratorMock.Object);
+            m_businessConfiguratorAbsractFactoryMock = new Mock<IBusinessConfiguratorAbsractFactory>();
+            m_businessConfiguratorAbsractFactoryMock.Setup(x => x.GetFactory<Entity>())
+                                                    .Returns(m_businessConfiguratorFactoryMock.Object);
+            m_crmServiceProviderMock = new Mock<ICrmServiceProvider>();
+            m_crmServiceProviderMock.Setup(x => x.GetService(It.Is<Type>(t => t == typeof(ICrmPluginEventExtractor))))
+                                    .Returns(m_crmPluginEventExtractorMock.Object);
+            m_crmServiceProviderMock.Setup(x => x.GetService(It.Is<Type>(t => t == typeof(IBusinessConfiguratorAbsractFactory))))
+                                    .Returns(m_businessConfiguratorAbsractFactoryMock.Object);
 
-            CrmServiceProvider.Load(crmServiceProviderMock.Object);
+            CrmServiceProvider.Load(m_crmServiceProviderMock.Object);
         }
 
         #endregion
@@ -70,7 +63,7 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            crmServiceProviderMock.Verify(x => x.GetService(typeof(ICrmPluginEventExtractor)), Times.Once);
+            m_crmServiceProviderMock.Verify(x => x.GetService(typeof(ICrmPluginEventExtractor)), Times.Once);
         }
 
         [Test]
@@ -78,7 +71,7 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            crmPluginEventExtractorMock.Verify(x => x.GetPluginEvent(TestContext), Times.Once);
+            m_crmPluginEventExtractorMock.Verify(x => x.GetPluginEvent(TestContext), Times.Once);
         }
 
         [Test]
@@ -86,7 +79,7 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            crmServiceProviderMock.Verify(x => x.GetService(typeof(IBusinessConfiguratorAbsractFactory)), Times.AtLeastOnce);
+            m_crmServiceProviderMock.Verify(x => x.GetService(typeof(IBusinessConfiguratorAbsractFactory)), Times.AtLeastOnce);
         }
 
         [Test]
@@ -94,7 +87,7 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            businessConfiguratorAbsractFactoryMock.Verify(x => x.GetFactory<Entity>(), Times.AtLeastOnce);
+            m_businessConfiguratorAbsractFactoryMock.Verify(x => x.GetFactory<Entity>(), Times.AtLeastOnce);
         }
 
         [Test]
@@ -102,8 +95,8 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            businessConfiguratorFactoryMock.As<IBusinessConfiguratorFactory>()
-                                           .Verify(x => x.GetConfigurator(TestCrmPluginEvent), Times.AtLeastOnce);
+            m_businessConfiguratorFactoryMock.As<IBusinessConfiguratorFactory>()
+                                             .Verify(x => x.GetConfigurator(TestCrmPluginEvent), Times.AtLeastOnce);
         }
 
         [Test]
@@ -111,27 +104,22 @@ namespace SEV.Crm.Business.Tests
         {
             m_crmBusiness.Configure(TestContext);
 
-            businessConfiguratorMock.Verify(x => x.Configure(TestContext), Times.AtLeastOnce);
+            m_businessConfiguratorMock.Verify(x => x.Configure(TestContext), Times.AtLeastOnce);
         }
 
         [Test]
         public void Execute_ShouldCallExecuteOfCrmBusinessAgents()
         {
-            m_crmBusiness.Configure(TestContext);
+            var businessAgentMock1 = new Mock<IBusinessAgent>();
+            businessAgentMock1.SetupProperty(x => x.ExecutionOrder, 1);
+            var businessAgentMock2 = new Mock<IBusinessAgent>();
+            businessAgentMock2.SetupProperty(x => x.ExecutionOrder, 2);
 
-            m_crmBusiness.Execute(TestContext);
+            m_crmBusiness.Execute(TestContext,
+                                  new List<IBusinessAgent> { businessAgentMock1.Object, businessAgentMock2.Object });
 
-            crmBusinessAgentMock.Verify(x => x.Execute(TestContext), Times.Exactly(2));
-        }
-
-        [Test]
-        public void Dispose_ShouldCallDisposeOfCrmBusinessAgents()
-        {
-            m_crmBusiness.Configure(TestContext);
-
-            m_crmBusiness.Dispose();
-
-            crmBusinessAgentMock.Verify(x => x.Dispose(), Times.Exactly(2));
+            businessAgentMock1.Verify(x => x.Execute(TestContext), Times.Once);
+            businessAgentMock2.Verify(x => x.Execute(TestContext), Times.Once);
         }
     }
 }

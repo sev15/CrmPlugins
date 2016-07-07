@@ -23,11 +23,5 @@ namespace SEV.Crm.Business.Agents
                 throw new InvalidOperationException("Invalid Execution Order.");
             }
         }
-
-        public virtual void Dispose()
-        {
-            ExecutionOrder = -1;
-            Context = null;
-        }
     }
 }

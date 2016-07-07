@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyCompany("SEV")]
 [assembly: AssemblyProduct("SEV.Crm.Plugins.Tests")]
-[assembly: AssemblyCopyright("Copyright © SEV 2015")]
+[assembly: AssemblyCopyright("Copyright © SEV 2015-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
